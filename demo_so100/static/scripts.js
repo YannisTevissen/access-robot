@@ -14,7 +14,6 @@ function getSliderValues() {
         elbow_flex: parseFloat(document.getElementById('elbow_flex').value),
         wrist_flex: parseFloat(document.getElementById('wrist_flex').value),
         wrist_roll: parseFloat(document.getElementById('wrist_roll').value),
-        gripper: parseFloat(document.getElementById('gripper').value)
     };
 }
 
@@ -25,7 +24,6 @@ function sendSliderValues() {
     updateSliderValue('elbow_flex');
     updateSliderValue('wrist_flex');
     updateSliderValue('wrist_roll');
-    updateSliderValue('gripper');
     fetch('/update_sliders', {
         method: 'POST',
         headers: {
@@ -44,14 +42,12 @@ function resetArmRest() {
     elbow_flex_slider = document.getElementById('elbow_flex');
     wrist_flex_slider = document.getElementById('wrist_flex');
     wrist_roll_slider = document.getElementById('wrist_roll');
-    gripper_slider = document.getElementById('gripper');
 
     shoulder_pan_slider.value = -8.6;
     shoulder_lift_slider.value = -193.4;
     elbow_flex_slider.value = 182.2;
     wrist_flex_slider.value = 67.9;
     wrist_roll_slider.value = -2.8;
-    gripper_slider.value = 0.07;
 
 
 }
@@ -70,7 +66,6 @@ function resetArmTop() {
     elbow_flex_slider.value = 20;
     wrist_flex_slider.value = 100;
     wrist_roll_slider.value = -2.8;
-    gripper_slider.value = 0.07;
 
 
 }
@@ -82,23 +77,11 @@ async function sayHello() {
     elbow_flex_slider = document.getElementById('elbow_flex');
     wrist_flex_slider = document.getElementById('wrist_flex');
     wrist_roll_slider = document.getElementById('wrist_roll');
-    gripper_slider = document.getElementById('gripper');
     await sleep(2000);
 
     shoulder_pan_slider.value = 69.4;
     wrist_flex_slider = 36.6;
     await sleep(2000);
-    gripper_slider.value = 49.7;
-    await sleep(500);
-    gripper_slider.value = -65;
-    await sleep(500);
-    gripper_slider.value = 49.7;
-    await sleep(500);
-    gripper_slider.value = -65;
-    await sleep(500);
-    gripper_slider.value = 49.7;
-    await sleep(500);
-    gripper_slider.value = -65;
 }
 
 // Send slider values every 1 second
