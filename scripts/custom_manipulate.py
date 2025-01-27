@@ -3,13 +3,11 @@ from lerobot.common.robot_devices.motors.feetech import FeetechMotorsBus
 import numpy as np
 import time
 
-shoulder_pan_rest = -8.6132812e+00
-shoulder_lift_rest = 1.9344727e+02
-elbow_flex_rest = 1.8219727e+02
-wrist_flex_rest = -40
+shoulder_pan_rest = -4.2
+shoulder_lift_rest = -175
+elbow_flex_rest = 188.4
+wrist_flex_rest = -9
 wrist_roll_rest = 20
-gripper_rest = 7.0422538e-02
-
 
 
 
@@ -20,7 +18,6 @@ class MyArm:
         self.elbow_flex = elbow_flex_rest
         self.wrist_flex = wrist_flex_rest
         self.wrist_roll = wrist_roll_rest
-        self.gripper = gripper_rest
 
         self.follower_port = "/dev/ttyACM0"
         self.follower_arm = FeetechMotorsBus(
@@ -60,7 +57,6 @@ class MyArm:
             "elbow_flex": elbow_flex_rest,
             "wrist_flex": wrist_flex_rest,
             "wrist_roll": wrist_roll_rest,
-            "gripper": gripper_rest,
         }
         self.move_arm(rest_dict)
 
