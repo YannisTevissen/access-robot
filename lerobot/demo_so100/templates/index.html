@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Arm Control</title>
+    <script src="static/scripts.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
+            background-color: #f5f5f5;
+            color: #333;
+        }
+
+        h1 {
+            color: #2c3e50;
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        #sliders {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .slider-group {
+            margin-bottom: 1.5rem;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: #2c3e50;
+        }
+
+        input[type="range"] {
+            width: 100%;
+            height: 8px;
+            border-radius: 4px;
+            -webkit-appearance: none;
+            background: #e0e0e0;
+            margin-bottom: 0.5rem;
+        }
+
+        input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 20px;
+            height: 20px;
+            background: #3498db;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        input[type="range"]::-webkit-slider-thumb:hover {
+            background: #2980b9;
+        }
+
+        .value-display {
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
+            justify-content: center;
+        }
+
+        button {
+            padding: 0.8rem 1.5rem;
+            border: none;
+            border-radius: 6px;
+            background: #3498db;
+            color: white;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        button:hover {
+            background: #2980b9;
+        }
+
+        .save-position {
+            margin-top: 2rem;
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .save-btn {
+            background: #27ae60;
+        }
+
+        .save-btn:hover {
+            background: #219a52;
+        }
+
+        select {
+            padding: 0.8rem 1.5rem;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            background: white;
+            color: #333;
+            font-size: 1rem;
+            cursor: pointer;
+        }
+
+        select:hover {
+            border-color: #3498db;
+        }
+
+        .delete-btn {
+            background: #e74c3c;
+        }
+
+        .delete-btn:hover {
+            background: #c0392b;
+        }
+
+        .voice-interface {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .mic-button {
+            background: #3498db;
+            border: none;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+
+        .mic-button:hover {
+            background: #2980b9;
+            transform: scale(1.05);
+        }
+
+        .mic-button.recording {
+            background: #e74c3c;
+            animation: pulse 1.5s infinite;
+        }
+
+        .mic-button i {
+            color: white;
+            font-size: 1.2rem;
+        }
+
+        .recording-status {
+            margin-top: 0.5rem;
+            font-size: 0.9rem;
+            color: #666;
+            min-height: 20px;
+        }
+
+        .transcription {
+            margin-top: 1rem;
+            padding: 1rem;
+            background: white;
+            border-radius: 8px;
+            min-height: 50px;
+            display: none;
+        }
+
+        .transcription.active {
+            display: block;
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>Adjust Robot Position</h1>
+
+    <div id="sliders">
+        <div class="slider-group">
+            <label for="shoulder_pan">Shoulder Pan</label>
+            <input type="range" id="shoulder_pan" min="-90" max="90" step="0.1" value="-8.61" oninput="updateSliderValue('shoulder_pan')">
+            <span class="value-display" id="shoulder_pan_value">-8.61</span>
+        </div>
+
+        <div class="slider-group">
+            <label for="shoulder_lift">Shoulder Lift</label>
+            <input type="range" id="shoulder_lift" min="-270" max="-175" step="0.1" value="-175" oninput="updateSliderValue('shoulder_lift')">
+            <span class="value-display" id="shoulder_lift_value">120</span>
+        </div>
+
+        <div class="slider-group">
+            <label for="elbow_flex">Elbow Flex</label>
+            <input type="range" id="elbow_flex" min="-15" max="270" step="0.1" value="20" oninput="updateSliderValue('elbow_flex')">
+            <span class="value-display" id="elbow_flex_value">20</span>
+        </div>
+
+        <div class="slider-group">
+            <label for="wrist_flex">Wrist Flex</label>
+            <input type="range" id="wrist_flex" min="-105" max="55" step="0.1" value="90" oninput="updateSliderValue('wrist_flex')">
+            <span class="value-display" id="wrist_flex_value">100</span>
+        </div>
+
+        <div class="slider-group">
+            <label for="wrist_roll">Wrist Roll</label>
+            <input type="range" id="wrist_roll" min="-150" max="150" step="0.1" value="-2.76" oninput="updateSliderValue('wrist_roll')">
+            <span class="value-display" id="wrist_roll_value">-2.76</span>
+        </div>
+
+        <div class="slider-group">
+            <label for="gripper">Gripper</label>
+            <input type="range" id="gripper" min="-10" max="120" step="0.1" value="0" oninput="updateSliderValue('gripper')">
+            <span class="value-display" id="gripper_value">0.07</span>
+        </div>
+    </div>
+    <div class="save-position">
+        <button onclick="saveCurrentPosition()" class="save-btn">Save Current Position</button>
+        <select id="savedPositions" onchange="loadSavedPosition()">
+            <option value="">Select Saved Position</option>
+        </select>
+        <button onclick="deleteSelectedPosition()" class="delete-btn">Delete Position</button>
+    </div>
+    <div class="button-group">
+        <button onclick="resetArmRest()">Reset to Rest Position</button>
+        <button onclick="resetArmTop()">Set arm to top position</button>
+        <button onclick="sayHello()">Say hello!</button>
+        <button onclick="disconnectRobot()" class="delete-btn">Disconnect Robot</button>
+    </div>
+
+</body>
+</html>
