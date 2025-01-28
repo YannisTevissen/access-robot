@@ -8,6 +8,14 @@ function updateSliderValue(sliderId) {
     valueSpan.textContent = slider.value;
 }
 function getSliderValues() {
+
+    const sl = parseFloat(document.getElementById('shoulder_lift').value);
+    const ef = parseFloat(document.getElementById('elbow_flex').value);
+    const wf = parseFloat(document.getElementById('wrist_flex').value);
+    const total_flex = sl + ef + wf;
+    document.getElementById('total').value = total_flex;
+    document.getElementById('total_value').textContent = total_flex;
+
     return {
         shoulder_pan: parseFloat(document.getElementById('shoulder_pan').value),
         shoulder_lift: parseFloat(document.getElementById('shoulder_lift').value),
