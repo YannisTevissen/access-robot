@@ -12,11 +12,8 @@ function getSliderValues() {
     const sl = parseFloat(document.getElementById('shoulder_lift').value);
     const ef = parseFloat(document.getElementById('elbow_flex').value);
     const wf = parseFloat(document.getElementById('wrist_flex').value);
-    const total_flex = sl + ef + wf;
-    const total_slider = document.getElementById('total');
-    const total_value = document.getElementById('total_value');
-    total_slider.value = total_flex;
-    total_value.textContent = total_slider.value;
+    document.getElementById('total').value = sl + ef + wf;
+    updateSliderValue('total');
 
     return {
         shoulder_pan: parseFloat(document.getElementById('shoulder_pan').value),
