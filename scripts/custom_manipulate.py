@@ -7,7 +7,7 @@ shoulder_pan_rest = -4.2
 shoulder_lift_rest = -175
 elbow_flex_rest = 188.4
 wrist_flex_rest = -9
-wrist_roll_rest = 20
+wrist_roll_rest = 90
 
 
 class MyArm:
