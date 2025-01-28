@@ -10,7 +10,6 @@ wrist_flex_rest = -9
 wrist_roll_rest = 20
 
 
-
 class MyArm:
     def __init__(self):
         self.shoulder_pan = shoulder_pan_rest

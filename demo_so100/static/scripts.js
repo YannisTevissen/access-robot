@@ -171,8 +171,7 @@ function loadSavedPosition() {
         });
 }
 
-// Add this line at the end of your file to load saved positions when the page loads
-document.addEventListener('DOMContentLoaded', loadSavedPositionsList);
+
 
 async function deleteSelectedPosition() {
     const select = document.getElementById('savedPositions');
