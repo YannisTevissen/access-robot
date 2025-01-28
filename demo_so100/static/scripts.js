@@ -50,13 +50,11 @@ function resetArmRest() {
     wrist_flex_slider = document.getElementById('wrist_flex');
     wrist_roll_slider = document.getElementById('wrist_roll');
 
-    shoulder_pan_slider.value = -8.6;
-    shoulder_lift_slider.value = -193.4;
-    elbow_flex_slider.value = 182.2;
-    wrist_flex_slider.value = 67.9;
-    wrist_roll_slider.value = -2.8;
-
-
+    shoulder_pan_slider.value = -4.2;
+    shoulder_lift_slider.value = -175;
+    elbow_flex_slider.value = 188.4;
+    wrist_flex_slider.value = -9;
+    wrist_roll_slider.value = 90;
 }
 
 
@@ -68,27 +66,13 @@ function resetArmTop() {
     wrist_roll_slider = document.getElementById('wrist_roll');
     gripper_slider = document.getElementById('gripper');
 
-    shoulder_pan_slider.value = -8.6;
-    shoulder_lift_slider.value = 120;
-    elbow_flex_slider.value = 20;
-    wrist_flex_slider.value = 100;
-    wrist_roll_slider.value = -2.8;
+    shoulder_pan_slider.value = -71.3;
+    shoulder_lift_slider.value = -200;
+    elbow_flex_slider.value = 121.8;
+    wrist_flex_slider.value = 28;
+    wrist_roll_slider.value = 90;
 
 
-}
-
-async function sayHello() {
-    resetArmTop();
-    shoulder_pan_slider = document.getElementById('shoulder_pan');
-    shoulder_lift_slider = document.getElementById('shoulder_lift');
-    elbow_flex_slider = document.getElementById('elbow_flex');
-    wrist_flex_slider = document.getElementById('wrist_flex');
-    wrist_roll_slider = document.getElementById('wrist_roll');
-    await sleep(2000);
-
-    shoulder_pan_slider.value = 69.4;
-    wrist_flex_slider = 36.6;
-    await sleep(2000);
 }
 
 // Send slider values every 1 second
